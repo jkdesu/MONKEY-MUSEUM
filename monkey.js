@@ -19,7 +19,7 @@ const originalPositions = [];
 const colors = [];
 
 const img = new Image();
-img.src = 'assets/monkey1.png'; // ✅ Make sure this path is correct
+img.src = 'assets/monkey000.png'; // ✅ Make sure this path is correct
 img.onload = () => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -94,3 +94,4 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+

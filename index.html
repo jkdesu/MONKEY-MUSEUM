@@ -4,13 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monkey Museum</title>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <script type="module" src="monkey.js"></script>
 </head>
 <body>
-  <div id="three-container"></div> 
+  <!-- Three.js canvas container -->
+  <div id="three-container"></div>
+  
+  <!-- Pixel background canvas -->
   <canvas id="pixel-bg"></canvas>
 
+  <!-- Header -->
   <header>
     <nav>
       <div class="logo">MONKEY MUSEUM</div>
@@ -18,6 +22,7 @@
     </nav>
   </header>
 
+  <!-- Hero text -->
   <main>
     <div class="hero-text">
       <h1>MONKEY MUSEUM</h1>
@@ -25,51 +30,8 @@
     </div>
   </main>
 
-  <script>
-    const canvas = document.getElementById("pixel-bg");
-    const ctx = canvas.getContext("2d");
-
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-
-    const size = 10;
-    const cols = Math.floor(width / size);
-    const rows = Math.floor(height / size);
-
-    const pixels = [];
-
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        pixels.push({
-          x: x * size,
-          y: y * size,
-          color: `hsl(${Math.random() * 360}, 70%, 60%)`,
-          alpha: Math.random()
-        });
-      }
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-      pixels.forEach((p) => {
-        ctx.fillStyle = `hsla(${Math.random() * 360}, 70%, 60%, ${p.alpha})`;
-        ctx.fillRect(p.x, p.y, size - 1, size - 1);
-        p.alpha += (Math.random() - 0.5) * 0.05;
-        p.alpha = Math.max(0.1, Math.min(1, p.alpha));
-      });
-      requestAnimationFrame(draw);
-    }
-
-    draw();
-
-    window.addEventListener("resize", () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    });
-  </script>
+  <!-- Scripts -->
+  <script type="module" src="monkey.js"></script>
+  <script src="pixel-bg.js"></script>
 </body>
 </html>
